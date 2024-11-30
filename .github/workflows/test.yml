@@ -18,14 +18,24 @@ jobs:
       - name: ⚙️ Install https://mitmproxy.org/
         run: |
           sudo pip install mitmproxy
-      - name: Checkout ter exp
-        uses: actions/checkout@v4
-        with:
-          repository: 'https://github.com/SAP/terraform-exporter-btp.git'
-          path: tf_exp
       - uses: actions/setup-go@41dfa10bad2bb2ae585af6ee5bb4d7d973ad74ed # v5.1.0
         with:
           # go-version-file: 'go.mod'
           cache: true
-      # - run: go mod download
-      # - run: go build -v .
+      - name: Checkout ter exp
+        uses: actions/checkout@v4
+        with:
+          repository: 'SAP/terraform-exporter-btp'
+          path: tf_exp
+
+      - name: Setup go
+        run: go mod download
+        working-directory: ./tf_exp
+      - name: Build
+        working-directory: ./tf_exp
+        run: go build -o btptf . && chmod 777 btptf
+      - name: Set path
+        run: export PATH=tf_exp/tf_exp:$PATH
+      - name: Test
+        run: btptf
+      
