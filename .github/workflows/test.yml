@@ -1,0 +1,25 @@
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  # Ensure project builds before running testing matrix
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: hashicorp/setup-terraform@v3
+      - uses: actions/checkout@v4 # v4.0.0
+      - uses: actions/setup-python@v5
+      - name: ⚙️ Install https://mitmproxy.org/
+        run: |
+          sudo pip install mitmproxy
+      - uses: actions/setup-go@41dfa10bad2bb2ae585af6ee5bb4d7d973ad74ed # v5.1.0
+        with:
+          # go-version-file: 'go.mod'
+          cache: true
+      # - run: go mod download
+      # - run: go build -v .
