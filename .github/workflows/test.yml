@@ -50,10 +50,16 @@ jobs:
       - name: save secret to file
         run: | 
             echo -n "$FILE_CONTENT" 
+            echo -n "$FILE_CONTENT" | base64 -d
             echo -n "$FILE_CONTENT" | base64 -d > contents.txt
             cat contents.txt
+            echo -n "$ANOTHER_FILE" > b.txt
+            echo "----------"
+            echo " "
+            cat b.txt
         env:
            FILE_CONTENT: ${{ secrets.FILE_CONTENT }}
+           ANOTHER_FILE: ${{ secrets.A_SECRET }}
       - name: Print stuff
         run: cat contents.txt
       
