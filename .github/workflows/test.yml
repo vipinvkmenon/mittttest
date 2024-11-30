@@ -20,8 +20,8 @@ jobs:
       - name: Checkout ter exp
         uses: actions/checkout@v4
         with:
-        repository: 'https://github.com/SAP/terraform-exporter-btp.git'
-        path: tf_exp
+          repository: 'https://github.com/SAP/terraform-exporter-btp.git'
+          path: tf_exp
       - uses: actions/setup-go@41dfa10bad2bb2ae585af6ee5bb4d7d973ad74ed # v5.1.0
         with:
           # go-version-file: 'go.mod'
