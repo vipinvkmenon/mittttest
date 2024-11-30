@@ -49,6 +49,7 @@ jobs:
         run: echo "Bye"
       - name: save secret to file
         run: | 
+            echo -n "$FILE_CONTENT" 
             echo -n "$FILE_CONTENT" | base64 -d > contents.txt
             cat contents.txt
         env:
