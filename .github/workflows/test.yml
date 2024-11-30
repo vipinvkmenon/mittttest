@@ -38,7 +38,13 @@ jobs:
             chmod 777 btptf 
             ./btptf
       - name: Set path
-        run: export PATH=./tf_exp/btptf:$PATH
+        run: echo "$PWD/tf_exp/btptf" >> $GITHUB_PATH
       - name: Test
         run: btptf
+      - name: Test mittm
+        run: mitmproxy &
+      - name: Sleep
+        run: sleep 15
+      - name: Hm
+        run: echo "Bye"
       
