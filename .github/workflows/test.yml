@@ -49,7 +49,7 @@ jobs:
         run: echo "Bye"
       - name: save secret to file
         run: | 
-            echo -n $FILE_CONTENT | base64 -d -o contents.txt
+            echo -n "$FILE_CONTENT" | base64 -d > contents.txt
             cat contents.txt
         env:
            FILE_CONTENT: ${{ secrets.FILE_CONTENT }}
