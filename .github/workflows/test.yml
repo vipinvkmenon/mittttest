@@ -33,9 +33,9 @@ jobs:
         working-directory: ./tf_exp
       - name: Build
         working-directory: ./tf_exp
-        run: go build -o btptf . && chmod 777 btptf
+        run: go build -o btptf . && chmod 777 btptf && ./btptf
       - name: Set path
-        run: export PATH=tf_exp/tf_exp:$PATH
+        run: export PATH=./tf_exp/btptf:$PATH
       - name: Test
         run: btptf
       
