@@ -38,7 +38,7 @@ jobs:
             chmod 777 btptf 
             ./btptf
       - name: Set path
-        run: echo "$PWD/tf_exp/btptf" >> $GITHUB_PATH
+        run: echo "${PWD}/tf_exp" >> $GITHUB_PATH
       - name: Test
         run: btptf
       - name: Test mittm
